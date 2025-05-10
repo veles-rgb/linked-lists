@@ -72,7 +72,7 @@ class LinkedList {
         if (currentNode === null) {
             return "Invalid index. Use size() to see the length of the list.";
         } else {
-            return currentNode;
+            return currentNode.value;
         }
     }
 
