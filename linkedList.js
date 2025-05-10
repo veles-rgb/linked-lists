@@ -99,6 +99,36 @@ class LinkedList {
         }
         return false;
     }
+
+    find(value) {
+        let currentNode = this.head;
+        for (let i = 1; i < this.size() + 1; i++) {
+            if (currentNode.value === value) {
+                return i;
+            } else {
+                currentNode = currentNode.nextNode;
+            }
+        }
+        return "Value not found in list.";
+    }
+
+    toString() {
+        let listString = "";
+        let currentNode = this.head;
+        if (this.head === null) {
+            return "Empty list!";
+        } else {
+            for (let i = 0; i < this.size() + 1; i++) {
+                if (currentNode === null) {
+                    listString += "null";
+                } else {
+                    listString += `(${currentNode.value}) -> `;
+                    currentNode = currentNode.nextNode;
+                }
+            }
+        }
+        return listString;
+    }
 }
 
 class Node {
