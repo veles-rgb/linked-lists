@@ -129,6 +129,52 @@ class LinkedList {
         }
         return listString;
     }
+
+    insertAt(value, index) {
+        if (index === 0 || index > this.size()) {
+            return `Invalid index. Please use 1-${this.size()}.`;
+        } else {
+            if (index === this.size()) {
+                this.append(value);
+                return `Added ${value} to index ${index}.`;
+            }
+            if (index === 1) {
+                this.prepend(value);
+                return `Added ${value} to index ${index}.`;
+            }
+            let newNode = new Node(value);
+            newNode.value = value;
+            let currentNode = this.head;
+            let previousNode;
+            for (let i = 1; i < index; i++) {
+                previousNode = currentNode;
+                currentNode = currentNode.nextNode;
+            }
+            previousNode.nextNode = newNode;
+            newNode.nextNode = currentNode;
+        }
+    }
+
+    removeAt(index) {
+        if (index === 0 || index > this.size()) {
+            return `Invalid index. Please use 1-${this.size()}.`;
+        } else if (index === 1) {
+            let currentNode = this.head;
+            this.head = this.head.nextNode;
+            return `Removed "${currentNode.value}" at index ${index}.`;
+        } else {
+            let currentNode = this.head;
+            let previousNode;
+            for (let i = 1; i < index; i++) {
+                previousNode = currentNode;
+                currentNode = currentNode.nextNode;
+            }
+            const removedNode = previousNode.nextNode.value;
+            previousNode.nextNode = currentNode.nextNode;
+            currentNode = null;
+            return `Removed "${removedNode}" at index ${index}.`;
+        }
+    }
 }
 
 class Node {
